@@ -30,7 +30,6 @@ const Form = (props: Props) => {
           fieldType={fieldType.text}
           fieldPlaceholder="e.g. +1 234 567 890"
         />
-        <button className="form-button">next step</button>
       </form>
     </div>
   );

@@ -1,7 +1,11 @@
-import "./App.css";
+import GlobalFormCard from "./components/GlobalFormCard";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <main className="App">
+      <GlobalFormCard />
+    </main>
+  );
 }
 
 export default App;

@@ -1,4 +1,6 @@
 import React from "react";
+import FormSide from "./FormSide";
+import StepsSide from "./StepsSide";
 
 export enum fieldType {
   text = "text",
@@ -8,7 +10,12 @@ export enum fieldType {
 type Props = {};
 
 const GlobalFormCard = (props: Props) => {
-  return <div>GlobalFormCard</div>;
+  return (
+    <div className="global-card">
+      <StepsSide />
+      <FormSide />
+    </div>
+  );
 };
 
 export default GlobalFormCard;
