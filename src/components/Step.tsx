@@ -4,12 +4,26 @@ type Props = {
   num: number;
   stepName: string;
   operation: () => void;
+  selected: boolean;
+  handleStepClick: (stepNum: number) => void;
 };
 
-const Step = ({ num, stepName, operation }: Props) => {
+const Step = ({
+  num,
+  stepName,
+  operation,
+  selected,
+  handleStepClick,
+}: Props) => {
   return (
     <div className="step">
-      <button className="step-button" onClick={operation}>
+      <button
+        className={`step-button ${selected === true ? "selected" : ""}`}
+        onClick={() => {
+          operation();
+          handleStepClick(num);
+        }}
+      >
         {num}
       </button>
       <div className="text">

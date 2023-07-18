@@ -1,0 +1,54 @@
+.steps-container {
+  padding: 20px;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  height: 100%;
+  background-image: url(images/bg-sidebar-desktop.svg);
+  background-position: 57% 89%;
+  background-repeat: no-repeat;
+  background-size: 105%;
+  border-radius: 12px;
+  & .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    & .step {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 20px;
+      & .step-button {
+        border-radius: 10000000px;
+        border: 2px solid;
+        border-color: white;
+        padding: 6px 11px;
+        cursor: pointer;
+        color: white;
+        background-color: transparent;
+        &.selected {
+          background-color: $light-blue;
+          border-color: $light-blue;
+          color: $marine-blue;
+        }
+      }
+      & .text {
+        & .small-title {
+          color: $cool-gray;
+          font-weight: 200;
+          margin: 0;
+          text-transform: uppercase;
+          font-size: 14px;
+        }
+
+        & .bold-title {
+          margin: 0;
+          color: white;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

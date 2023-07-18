@@ -3,4 +3,11 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
+  background-color: $alabaster;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 16px -11px;
+  // ARBITRARY VALUES:
+  min-height: 26rem;
+  height: 27rem;
 }
