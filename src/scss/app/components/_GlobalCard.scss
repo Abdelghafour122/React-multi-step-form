@@ -1,8 +1,9 @@
 .global-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 40px;
+  justify-content: start;
+  // CHANGES BY SCREEN SIZE
+  gap: 80px;
   background-color: $alabaster;
   padding: 10px;
   border-radius: 12px;
@@ -10,4 +11,5 @@
   // ARBITRARY VALUES:
   min-height: 26rem;
   height: 27rem;
+  width: 65%;
 }

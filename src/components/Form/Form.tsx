@@ -7,10 +7,10 @@ type Props = {};
 const Form = (props: Props) => {
   return (
     <div className="form">
-      <h1 className="form-title">Personal info</h1>
-      <p className="form-p">
-        Please provide your name, email address, and phone number.
-      </p>
+      <div className="form-top">
+        <h1>Personal info</h1>
+        <p>Please provide your name, email address, and phone number.</p>
+      </div>
       <form action="">
         <InputField
           fieldId="name"
