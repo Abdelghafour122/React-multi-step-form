@@ -22,13 +22,22 @@ const PLANS: PlanType[] = [
 type Props = {
   togglePaymentType: (val: boolean) => void;
   paymentType: boolean;
+  changePlanType: (newPlanType: PlanEnum) => void;
+  planType: PlanEnum | undefined;
 };
 
-const Plans = ({ togglePaymentType, paymentType }: Props) => {
+const Plans = ({
+  togglePaymentType,
+  paymentType,
+  changePlanType,
+  planType,
+}: Props) => {
   return (
     <div className="plans">
-      <h1>Choose your plan</h1>
-      <p>You have the option of monthly or yearly billing.</p>
+      <div className="main-text">
+        <h1>Select your plan</h1>
+        <p>You have the option of monthly or yearly billing.</p>
+      </div>
       <div className="plans-container">
         {PLANS.map((plan, ind) => (
           <Plan
@@ -37,6 +46,8 @@ const Plans = ({ togglePaymentType, paymentType }: Props) => {
             price={plan.price}
             type={plan.type}
             paymentType={paymentType}
+            changePlanType={changePlanType}
+            planType={planType}
           />
         ))}
       </div>

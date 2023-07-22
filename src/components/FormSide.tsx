@@ -5,15 +5,20 @@ import Addons from "./Addons/Addons";
 import Form from "./Form/Form";
 import Plans from "./Plans/Plans";
 import Summary from "./Summary/Summary";
+import { PlanEnum } from "./Plans/Plan";
 
 const FormSide = () => {
   const [paymentType, setPaymentType] = useState<boolean>(false);
+  const [planType, setPlanType] = useState<PlanEnum>();
+
   const togglePaymentType = (val: boolean) => setPaymentType(val);
+  const changePlanType = (newPlanType: PlanEnum) => setPlanType(newPlanType);
 
   // testing
   useEffect(() => {
     console.log(paymentType);
-  }, [paymentType]);
+    console.log(planType);
+  }, [paymentType, planType]);
 
   return (
     <div className="form-side">
@@ -25,6 +30,8 @@ const FormSide = () => {
             <Plans
               paymentType={paymentType}
               togglePaymentType={togglePaymentType}
+              changePlanType={changePlanType}
+              planType={planType}
             />
           }
         />
