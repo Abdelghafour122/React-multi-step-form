@@ -1,0 +1,27 @@
+.plans {
+  width: 100%;
+  & h1 {
+    margin: 0;
+    color: $marine-blue;
+    font-size: 29px;
+  }
+
+  & .plans-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & .plan {
+      & h2 {
+        font-size: 15px;
+        color: $marine-blue;
+        margin: 0;
+      }
+      & p {
+        margin: 0;
+        color: $cool-gray;
+        font-size: 14px;
+      }
+    }
+  }
+}
