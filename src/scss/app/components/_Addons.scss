@@ -1,0 +1,87 @@
+.addons {
+  width: 100%;
+  & .main-text {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    gap: 13px;
+    margin-bottom: 30px;
+    & h1 {
+      margin: 0;
+      color: $marine-blue;
+      font-size: 27px;
+    }
+    & p {
+      margin: 0;
+      color: $cool-gray;
+    }
+  }
+  & .options-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 13px;
+
+    & .addon {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border: 1px solid $cool-gray;
+      border-radius: 10px;
+      cursor: pointer;
+      padding: 15px;
+      transition: 0.2s;
+      &:hover {
+        border-color: $pruplish-blue;
+      }
+
+      & .left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+
+        & input {
+          outline: none;
+          height: 20px;
+          width: 20px;
+          border: 1px solid $cool-gray;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+
+        & .text {
+          display: flex;
+          flex-direction: column;
+          align-items: start;
+          justify-content: center;
+          gap: 7px;
+
+          & h2 {
+            margin: 0;
+            font-size: 15px;
+            color: $marine-blue;
+          }
+          & p {
+            margin: 0;
+            font-size: 15px;
+            color: $cool-gray;
+          }
+        }
+      }
+
+      & .price {
+        color: $pruplish-blue;
+        font-size: 14px;
+      }
+
+      & .addon-selected {
+        background-color: $magnolia;
+        border-color: $pruplish-blue;
+      }
+    }
+  }
+}

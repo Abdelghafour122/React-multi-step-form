@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Addons from "./Addons/Addons";
+import Addons, { AddonType } from "./Addons/Addons";
 import Form from "./Form/Form";
 import Plans from "./Plans/Plans";
 import Summary from "./Summary/Summary";
@@ -10,15 +9,26 @@ import { PlanEnum } from "./Plans/Plan";
 const FormSide = () => {
   const [paymentType, setPaymentType] = useState<boolean>(false);
   const [planType, setPlanType] = useState<PlanEnum>();
+  const [addons, setAddons] = useState<AddonType[]>([]);
 
   const togglePaymentType = (val: boolean) => setPaymentType(val);
   const changePlanType = (newPlanType: PlanEnum) => setPlanType(newPlanType);
+  const handleChangeAddons = (newAddon: AddonType) => {
+    // console.log(addons.includes(newAddon));
+    addons.map((addon) => console.log(addon, newAddon));
+    console.log(addons);
+    // setAddons([...(addons as AddonType[]), newAddon]);
+  };
 
   // testing
+  // useEffect(() => {
+  //   console.log(paymentType);
+  //   console.log(planType);
+  // }, [paymentType, planType]);
+
   useEffect(() => {
-    console.log(paymentType);
-    console.log(planType);
-  }, [paymentType, planType]);
+    console.log(addons);
+  }, [addons]);
 
   return (
     <div className="form-side">
@@ -35,7 +45,15 @@ const FormSide = () => {
             />
           }
         />
-        <Route path="/addons" element={<Addons />} />
+        <Route
+          path="/addons"
+          element={
+            <Addons
+              handleChangeAddons={handleChangeAddons}
+              paymentType={paymentType}
+            />
+          }
+        />
         <Route path="/summary" element={<Summary />} />
       </Routes>
       <div className="buttons">
