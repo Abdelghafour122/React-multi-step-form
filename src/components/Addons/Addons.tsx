@@ -1,4 +1,3 @@
-import { PlanEnum } from "../Plans/Plan";
 import Addon from "./Addon";
 
 type Props = {
@@ -11,6 +10,7 @@ export type AddonType = {
   desc: string;
   price: { monthly: number; yearly: number };
 };
+
 const ADDONS: AddonType[] = [
   {
     title: "Online service",

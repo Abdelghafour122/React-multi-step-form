@@ -9,26 +9,22 @@ import { PlanEnum } from "./Plans/Plan";
 const FormSide = () => {
   const [paymentType, setPaymentType] = useState<boolean>(false);
   const [planType, setPlanType] = useState<PlanEnum>();
-  const [addons, setAddons] = useState<AddonType[]>([]);
+
+  const [addons, setAddons] = useState<Set<String>>(new Set());
 
   const togglePaymentType = (val: boolean) => setPaymentType(val);
   const changePlanType = (newPlanType: PlanEnum) => setPlanType(newPlanType);
+
   const handleChangeAddons = (newAddon: AddonType) => {
-    // console.log(addons.includes(newAddon));
-    addons.map((addon) => console.log(addon, newAddon));
+    const stringifiedNewAddon = JSON.stringify(newAddon);
+
+    addons.has(stringifiedNewAddon)
+      ? addons.delete(stringifiedNewAddon)
+      : addons.add(stringifiedNewAddon);
+
+    setAddons(addons);
     console.log(addons);
-    // setAddons([...(addons as AddonType[]), newAddon]);
   };
-
-  // testing
-  // useEffect(() => {
-  //   console.log(paymentType);
-  //   console.log(planType);
-  // }, [paymentType, planType]);
-
-  useEffect(() => {
-    console.log(addons);
-  }, [addons]);
 
   return (
     <div className="form-side">
