@@ -1,19 +1,65 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Addons, { AddonType } from "./Addons/Addons";
+import Addons from "./Addons/Addons";
 import Form from "./Form/Form";
 import Plans from "./Plans/Plans";
 import Summary from "./Summary/Summary";
-import { PlanEnum } from "./Plans/Plan";
+import { AddonType, PlanEnum, PlanType } from "../types";
+
+const PLANS: PlanType[] = [
+  {
+    image: "/images/icon-arcade.svg",
+    price: { monthly: 9, yearly: 90 },
+    type: PlanEnum.Arcade,
+  },
+  {
+    image: "/images/icon-advanced.svg",
+    price: { monthly: 12, yearly: 120 },
+    type: PlanEnum.Advanced,
+  },
+  {
+    image: "/images/icon-pro.svg",
+    price: { monthly: 15, yearly: 150 },
+    type: PlanEnum.Pro,
+  },
+];
+
+const ADDONS: AddonType[] = [
+  {
+    title: "Online service",
+    desc: "Access to multiplayer games",
+    price: {
+      monthly: 1,
+      yearly: 10,
+    },
+  },
+  {
+    title: "Larger storage",
+    desc: "Extra 1TB of cloud save",
+    price: {
+      monthly: 2,
+      yearly: 20,
+    },
+  },
+  {
+    title: "Customizable Profile",
+    desc: "Custom theme on your profile",
+    price: {
+      monthly: 2,
+      yearly: 20,
+    },
+  },
+];
 
 const FormSide = () => {
   const [paymentType, setPaymentType] = useState<boolean>(false);
-  const [planType, setPlanType] = useState<PlanEnum>();
+  const [subscription, setSubscribtion] = useState<PlanType>();
 
-  const [addons, setAddons] = useState<Set<String>>(new Set());
+  const [addons, setAddons] = useState<Set<string>>(new Set());
 
   const togglePaymentType = (val: boolean) => setPaymentType(val);
-  const changePlanType = (newPlanType: PlanEnum) => setPlanType(newPlanType);
+  const handleChangeSubscription = (newPlanType: PlanType) =>
+    setSubscribtion(newPlanType);
 
   const handleChangeAddons = (newAddon: AddonType) => {
     const stringifiedNewAddon = JSON.stringify(newAddon);
@@ -36,8 +82,9 @@ const FormSide = () => {
             <Plans
               paymentType={paymentType}
               togglePaymentType={togglePaymentType}
-              changePlanType={changePlanType}
-              planType={planType}
+              handleChangeSubscription={handleChangeSubscription}
+              subscription={subscription}
+              PLANS={PLANS}
             />
           }
         />
@@ -47,10 +94,21 @@ const FormSide = () => {
             <Addons
               handleChangeAddons={handleChangeAddons}
               paymentType={paymentType}
+              ADDONS={ADDONS}
+              addons={addons}
             />
           }
         />
-        <Route path="/summary" element={<Summary />} />
+        <Route
+          path="/summary"
+          element={
+            <Summary
+              addons={addons}
+              paymentType={paymentType}
+              subscription={subscription}
+            />
+          }
+        />
       </Routes>
       <div className="buttons">
         <button className="back-button">go back</button>

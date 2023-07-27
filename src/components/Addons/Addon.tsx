@@ -1,33 +1,42 @@
-import { AddonType } from "./Addons";
+import { useState } from "react";
+import { AddonType } from "../../types";
 
-type Props = AddonType & {
+type Props = {
   handleChangeAddons: (newAddon: AddonType) => void;
   paymentType: boolean;
+  addon: AddonType;
+  addons: Set<string>;
 };
 
-const Addon = ({
-  title,
-  desc,
-  price,
-  handleChangeAddons,
-  paymentType,
-}: Props) => {
+// ADD THE CHECKED CLASS FOR SELECTED ADDONS, LIKE IN PLANS
+
+const Addon = ({ addon, handleChangeAddons, paymentType, addons }: Props) => {
+  const [addonChecked, setAddonChecked] = useState(
+    addons.has(JSON.stringify(addon))
+  );
+
   return (
     <label className="addon">
       <div className="left">
         <input
           type="checkbox"
-          name={title}
-          value={JSON.stringify({ title, desc, price })}
-          onChange={(e) => handleChangeAddons(JSON.parse(e.target.value))}
+          name={addon.title}
+          value={JSON.stringify(addon)}
+          onChange={(e) => {
+            handleChangeAddons(JSON.parse(e.target.value));
+            setAddonChecked(!addonChecked);
+          }}
+          checked={addonChecked}
         />
         <div className="text">
-          <h2>{title}</h2>
-          <p>{desc}</p>
+          <h2>{addon.title}</h2>
+          <p>{addon.desc}</p>
         </div>
       </div>
       <p className="price">
-        {paymentType ? `+$${price.yearly}/yr` : `+$${price.monthly}/mo`}
+        {paymentType
+          ? `+$${addon.price.yearly}/yr`
+          : `+$${addon.price.monthly}/mo`}
       </p>
     </label>
   );

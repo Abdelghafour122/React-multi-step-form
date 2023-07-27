@@ -2,10 +2,11 @@ import React, { useState } from "react";
 
 type Props = {
   togglePaymentType: (val: boolean) => void;
+  paymentType: boolean;
 };
 
-const PlanTypeSwitch = ({ togglePaymentType }: Props) => {
-  const [isChecked, setIsChecked] = useState(false);
+const PlanTypeSwitch = ({ togglePaymentType, paymentType }: Props) => {
+  const [isChecked, setIsChecked] = useState(paymentType);
 
   const handleToggle = () => {
     togglePaymentType(!isChecked);

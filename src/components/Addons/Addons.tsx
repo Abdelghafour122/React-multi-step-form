@@ -1,44 +1,14 @@
+import { AddonType } from "../../types";
 import Addon from "./Addon";
 
 type Props = {
   handleChangeAddons: (newAddon: AddonType) => void;
   paymentType: boolean;
+  ADDONS: AddonType[];
+  addons: Set<string>;
 };
 
-export type AddonType = {
-  title: string;
-  desc: string;
-  price: { monthly: number; yearly: number };
-};
-
-const ADDONS: AddonType[] = [
-  {
-    title: "Online service",
-    desc: "Access to multiplayer games",
-    price: {
-      monthly: 1,
-      yearly: 10,
-    },
-  },
-  {
-    title: "Larger storage",
-    desc: "Extra 1TB of cloud save",
-    price: {
-      monthly: 2,
-      yearly: 20,
-    },
-  },
-  {
-    title: "Customizable Profile",
-    desc: "Custom theme on your profile",
-    price: {
-      monthly: 2,
-      yearly: 20,
-    },
-  },
-];
-
-const Addons = ({ handleChangeAddons, paymentType }: Props) => {
+const Addons = ({ handleChangeAddons, paymentType, ADDONS, addons }: Props) => {
   return (
     <div className="addons">
       <div className="main-text">
@@ -46,16 +16,17 @@ const Addons = ({ handleChangeAddons, paymentType }: Props) => {
         <p>Add-ons help enhance your gaming experience.</p>
       </div>
       <div className="options-list">
-        {ADDONS.map((addon, ind) => (
-          <Addon
-            key={ind}
-            title={addon.title}
-            desc={addon.desc}
-            price={addon.price}
-            handleChangeAddons={handleChangeAddons}
-            paymentType={paymentType}
-          />
-        ))}
+        {ADDONS.map((addon, ind) => {
+          return (
+            <Addon
+              key={ind}
+              addon={addon}
+              handleChangeAddons={handleChangeAddons}
+              paymentType={paymentType}
+              addons={addons}
+            />
+          );
+        })}
       </div>
     </div>
   );

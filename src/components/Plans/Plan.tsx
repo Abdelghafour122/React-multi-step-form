@@ -1,56 +1,41 @@
-export enum PlanEnum {
-  Arcade = "Arcade",
-  Advanced = "Advanced",
-  Pro = "Pro",
-}
+import { PlanType } from "../../types";
 
-export type PlanType = {
-  image: string;
-  type: PlanEnum;
-  price: {
-    yearly: number;
-    monthly: number;
-  };
-};
-
-type Props = PlanType & {
+type Props = {
   paymentType: boolean;
-  changePlanType: (newPlanType: PlanEnum) => void;
-  planType: PlanEnum | undefined;
+  handleChangeSubscription: (newPlanType: PlanType) => void;
+  plan: PlanType;
+  subscription: PlanType | undefined;
 };
 
 const Plan = ({
-  image,
-  type,
-  price,
+  plan,
   paymentType,
-  changePlanType,
-  planType,
+  handleChangeSubscription,
+  subscription,
 }: Props) => {
   return (
-    <label className={`plan ${planType === type ? "plan-selected" : ""}`}>
+    <label
+      className={`plan ${
+        subscription?.type === plan.type ? "plan-selected" : ""
+      }`}
+    >
       <input
         type="radio"
         name="plan"
-        value={type}
-        onChange={() => changePlanType(type)}
+        value={plan.type}
+        onChange={() => handleChangeSubscription(plan)}
       />
-      <img src={image} alt="a plan's illustration" />
+      <img src={plan.image} alt="a plan's illustration" />
       <div className="text">
-        <h2>{type}</h2>
-        <p>{paymentType ? `$${price.yearly}/yr` : `$${price.monthly}/mo`}</p>
+        <h2>{plan.type}</h2>
+        <p>
+          {paymentType
+            ? `$${plan.price.yearly}/yr`
+            : `$${plan.price.monthly}/mo`}
+        </p>
         {paymentType ? <p className="notice">2 months free</p> : null}
       </div>
     </label>
-
-    // ALTERNATIVE SOLUTION
-    // <div className="plan">
-    //   <img src={image} alt="a plan's illustration" />
-    //   <div className="text">
-    //     <h2>{type}</h2>
-    //     <p>{paymentType ? `$${price.yearly}/yr` : `$${price.monthly}/mo`}</p>
-    //   </div>
-    // </div>
   );
 };
 
