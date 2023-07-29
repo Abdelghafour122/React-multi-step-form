@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Addons from "./Addons/Addons";
 import Form from "./Form/Form";
 import Plans from "./Plans/Plans";
@@ -51,6 +51,8 @@ const ADDONS: AddonType[] = [
   },
 ];
 
+const ROUTES = ["/", "plans", "addons", "summary"];
+
 const FormSide = () => {
   const [paymentType, setPaymentType] = useState<boolean>(false);
   const [subscription, setSubscribtion] = useState<PlanType>();
@@ -69,8 +71,16 @@ const FormSide = () => {
       : addons.add(stringifiedNewAddon);
 
     setAddons(addons);
-    console.log(addons);
   };
+
+  const navigate = useNavigate();
+  let stepNum = 0;
+
+  // FINAL STEP:
+  // MAKE A FUNCTION TO DETECT THE STEP'S NUMBER TO SYNC WITH THE BUTTONS...
+  // EX: IF YOU ROUTE WITH STEPS, SYNC MUST HAPPEN WITH BUTTONS
+
+  const buttonNavigation = () => {};
 
   return (
     <div className="form-side">
@@ -111,8 +121,23 @@ const FormSide = () => {
         />
       </Routes>
       <div className="buttons">
-        <button className="back-button">go back</button>
-        <button className="form-button">next step</button>
+        {/* CHANGE DISABLED TO OPACITY: 0, HIDE THE BUTTON. */}
+        <button
+          className="back-button"
+          // onClick={() => navigate(-1)}
+          onClick={() => console.log(--stepNum)}
+          disabled={stepNum === 0}
+        >
+          go back
+        </button>
+        <button
+          className="form-button"
+          // onClick={() => navigate(ROUTES[++stepNum])}
+          onClick={() => console.log(++stepNum === ROUTES.length - 1)}
+          disabled={stepNum === ROUTES.length - 1}
+        >
+          next step
+        </button>
       </div>
     </div>
   );

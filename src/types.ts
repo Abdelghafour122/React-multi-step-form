@@ -18,3 +18,9 @@ export type PlanType = {
     monthly: number;
   };
 };
+
+export type StepType = {
+  num: number;
+  stepName: string;
+  navPath: string;
+};

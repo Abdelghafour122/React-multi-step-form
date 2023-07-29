@@ -1,11 +1,6 @@
+import { StepType } from "../types";
 import Step from "./Step";
 import { useNavigate } from "react-router-dom";
-
-export type StepType = {
-  num: number;
-  stepName: string;
-  navPath: string;
-};
 
 const STEPS = [
   {

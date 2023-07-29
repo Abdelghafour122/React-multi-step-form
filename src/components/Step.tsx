@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
-import { StepType } from "./StepsSide";
 import { useEffect, useState } from "react";
+import { StepType } from "../types";
 
 type Props = {
   step: StepType;
@@ -16,7 +16,7 @@ const Step = ({ step, operation }: Props) => {
       ? setIsCurrentStep(true)
       : setIsCurrentStep(false);
 
-    console.log(location.pathname.substring(1) === step.navPath.substring(1));
+    // console.log(location.pathname.substring(1) === step.navPath.substring(1));
   }, [location]);
 
   return (
