@@ -1,34 +1,35 @@
-import React from "react";
+import { useLocation } from "react-router";
+import { StepType } from "./StepsSide";
+import { useEffect, useState } from "react";
 
 type Props = {
-  num: number;
-  stepName: string;
+  step: StepType;
   operation: () => void;
-  selected: boolean;
-  handleStepClick: (stepNum: number) => void;
 };
 
-const Step = ({
-  num,
-  stepName,
-  operation,
-  selected,
-  handleStepClick,
-}: Props) => {
+const Step = ({ step, operation }: Props) => {
+  const location = useLocation();
+  const [isCurrentStep, setIsCurrentStep] = useState(false);
+
+  useEffect(() => {
+    location.pathname.substring(1) === step.navPath.substring(1)
+      ? setIsCurrentStep(true)
+      : setIsCurrentStep(false);
+
+    console.log(location.pathname.substring(1) === step.navPath.substring(1));
+  }, [location]);
+
   return (
     <div className="step">
       <button
-        className={`step-button ${selected === true ? "selected" : ""}`}
-        onClick={() => {
-          operation();
-          handleStepClick(num);
-        }}
+        className={`step-button ${isCurrentStep ? "selected" : ""}`}
+        onClick={() => operation()}
       >
-        {num}
+        {step.num}
       </button>
       <div className="text">
-        <p className="small-title">step {num}</p>
-        <p className="bold-title">{stepName}</p>
+        <p className="small-title">step {step.num}</p>
+        <p className="bold-title">{step.stepName}</p>
       </div>
     </div>
   );

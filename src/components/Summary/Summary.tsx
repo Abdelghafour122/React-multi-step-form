@@ -41,7 +41,9 @@ const Summary = ({ paymentType, addons, subscription }: Props) => {
                 <h2>{`${subscription?.type} (${
                   paymentType ? "Yearly" : "Monthly"
                 })`}</h2>
-                <Link to="plans">Change</Link>
+                <Link to="/plans" replace>
+                  Change
+                </Link>
               </div>
               <p className="price">{`$${
                 paymentType
