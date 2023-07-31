@@ -1,0 +1,106 @@
+.summary {
+  & .main-text {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    & h1 {
+      color: $marine-blue;
+      font: "27px";
+      margin: 0;
+    }
+    & p {
+      margin: 0;
+      color: $cool-gray;
+    }
+  }
+
+  & .main-list {
+    border-radius: 10px;
+    background-color: $magnolia;
+    padding: 20px;
+    & .top-plan {
+      & h2.no-plan {
+        color: $marine-blue;
+        font-size: 16px;
+        margin: 0;
+      }
+      & h2 {
+        color: $marine-blue;
+        font-size: 16px;
+      }
+
+      & .plan-payment {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $light-gray;
+        padding-bottom: 20px;
+        & .left {
+          & h2 {
+            color: $marine-blue;
+            margin: 0;
+          }
+          & a {
+            color: $cool-gray;
+          }
+        }
+        & p {
+          margin: 0;
+          color: $marine-blue;
+          font-weight: 700;
+        }
+      }
+    }
+    & .addons-cont {
+      padding-top: 20px;
+      & p.no-addons {
+        margin: 0;
+        color: $marine-blue;
+      }
+      & p {
+        color: $marine-blue;
+        font-size: 16px;
+      }
+      & ul {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 15px;
+        & li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          & p {
+            margin: 0;
+            color: $cool-gray;
+            font-size: 15px;
+          }
+          & p:last-of-type {
+            color: $marine-blue;
+          }
+        }
+      }
+    }
+  }
+  & .total {
+    & p.no-total {
+      color: $marine-blue;
+      margin: 20px 0 0;
+    }
+    & .total-payment {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      & .left {
+        color: $cool-gray;
+        font-size: 15px;
+      }
+      & .right {
+        font-size: 17px;
+        color: $pruplish-blue;
+        font-weight: 700;
+      }
+    }
+  }
+}

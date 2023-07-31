@@ -10,7 +10,8 @@
   background-size: 105%;
   border-radius: 12px;
   // CHANGE LATER
-  width: 55%;
+  // width: 55%;
+  flex-basis: 45%;
   & .steps {
     display: flex;
     flex-direction: column;

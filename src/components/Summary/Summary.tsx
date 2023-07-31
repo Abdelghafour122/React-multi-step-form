@@ -34,9 +34,9 @@ const Summary = ({ paymentType, addons, subscription }: Props) => {
       <div className="main-list">
         <div className="top-plan">
           {subscription === undefined ? (
-            <h2>You haven't selected any plan yet!</h2>
+            <h2 className="no-plan">You haven't selected any plan yet!</h2>
           ) : (
-            <>
+            <div className="plan-payment">
               <div className="left">
                 <h2>{`${subscription?.type} (${
                   paymentType ? "Yearly" : "Monthly"
@@ -50,12 +50,12 @@ const Summary = ({ paymentType, addons, subscription }: Props) => {
                   ? `${subscription?.price.yearly}/yr`
                   : `${subscription?.price.monthly}/mo`
               }`}</p>
-            </>
+            </div>
           )}
         </div>
         <div className="addons-cont">
           {emptyAddonsList ? (
-            <p>No addons selected yet!</p>
+            <p className="no-addons">No addons selected yet!</p>
           ) : (
             <ul>
               {[...addons].map((addon, ind) => {
@@ -63,50 +63,50 @@ const Summary = ({ paymentType, addons, subscription }: Props) => {
                 return (
                   <li key={ind} className="list-addon">
                     <p>{parsedAddon.title}</p>
-                    <p>{`+$${
-                      paymentType
-                        ? parsedAddon.price.yearly
-                        : parsedAddon.price.monthly
-                    }`}</p>
+                    <p>
+                      {paymentType
+                        ? `+$${parsedAddon.price.yearly}/yr`
+                        : `+$${parsedAddon.price.monthly}/mo`}
+                    </p>
                   </li>
                 );
               })}
             </ul>
           )}
         </div>
-        <div className="total">
-          {subscription === undefined ? (
-            <p>After selecting a plan, your total will appear here!</p>
-          ) : subscription !== undefined && emptyAddonsList ? (
-            <>
-              <p className="left">
-                {`Total (per ${paymentType ? "year" : "month"})`}
-              </p>
-              <p className="right">
-                {paymentType
-                  ? `$${subscription?.price.yearly as number}/yr`
-                  : `+$${subscription?.price.monthly as number}/mo`}
-              </p>
-            </>
-          ) : subscription !== undefined && !emptyAddonsList ? (
-            <>
-              <p className="left">
-                {`Total (per ${paymentType ? "year" : "month"})`}
-              </p>
-              <p className="right">
-                {paymentType
-                  ? `$${
-                      (subscription?.price.yearly as number) +
-                      formatTotalPrice()
-                    }/yr`
-                  : `+$${
-                      (subscription?.price.monthly as number) +
-                      formatTotalPrice()
-                    }/mo`}
-              </p>
-            </>
-          ) : null}
-        </div>
+      </div>
+      <div className="total">
+        {subscription === undefined ? (
+          <p className="no-total">
+            After selecting a plan, your total will appear here!
+          </p>
+        ) : subscription !== undefined && emptyAddonsList ? (
+          <div className="total-payment">
+            <p className="left">
+              {`Total (per ${paymentType ? "year" : "month"})`}
+            </p>
+            <p className="right">
+              {paymentType
+                ? `$${subscription?.price.yearly as number}/yr`
+                : `+$${subscription?.price.monthly as number}/mo`}
+            </p>
+          </div>
+        ) : subscription !== undefined && !emptyAddonsList ? (
+          <div className="total-payment">
+            <p className="left">
+              {`Total (per ${paymentType ? "year" : "month"})`}
+            </p>
+            <p className="right">
+              {paymentType
+                ? `$${
+                    (subscription?.price.yearly as number) + formatTotalPrice()
+                  }/yr`
+                : `+$${
+                    (subscription?.price.monthly as number) + formatTotalPrice()
+                  }/mo`}
+            </p>
+          </div>
+        ) : null}
       </div>
     </div>
   );
